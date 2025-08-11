@@ -1,0 +1,38 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+  .bg-main {
+    background-color: #11172C;
+  }
+  .color-main {
+    color: #11172C;
+  }
+
+  .bg-navbar {
+    background-color: #04756F;
+  }
+
+  .color-navbar {
+    color: #04756F;
+  }
+
+  .bg-nested {
+    background-color: #21293D;
+  }
+
+  .color-nested {
+    color: #21293D;
+  }
+
+  .bg-version {
+    background-color: #2A6D64;
+  }
+  
+  .color-version {
+    color: #2A6D64;
+  }
+
+body {
+    background-color: #11172C;
+    color: white;
+}

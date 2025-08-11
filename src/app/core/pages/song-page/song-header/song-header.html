@@ -1,0 +1,20 @@
+<div class="flex flex-row w-full">
+  <div class="w-12/33 h-full mt-auto">
+    <p class="text-lg font-semibold">{{ song().title }}</p>
+    <p class="text-sm opacity-60">
+      {{ song().lastEditedAt | datePipe }}
+    </p>
+  </div>
+  <div
+    class="w-2/10 color-navbar text-lg font-semibold inline-block align-bottom mt-auto mb-auto"
+  >
+    <p class="">
+      {{ song().currentSongVersion.title }}
+    </p>
+  </div>
+
+  <div class="flex flex-row gap-5 ml-auto mt-auto font-semibold">
+    <button>Save</button>
+    <button>Share</button>
+  </div>
+</div>

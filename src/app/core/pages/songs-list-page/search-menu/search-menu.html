@@ -1,0 +1,51 @@
+<div class="w-full h-1/4 bg-nested rounded-sm mb-5">
+  <p class="px-2 py-2 text-navbar-100">You have 3 songs in your library.</p>
+
+  <div class="flex items-center gap-4 px-2">
+    <!-- Search -->
+    <input
+      class="w-1/2 py-1 bd-navbar"
+      type="text"
+      placeholder="Search your songs by title, lyrics, or notes"
+    />
+
+    <!-- Favourite -->
+    <label class="flex items-center gap-1">
+      <input
+        type="checkbox"
+        id="favourite"
+        name="favourite"
+        value="favourite"
+        class="w-5 h-5"
+      />
+      Favourite
+    </label>
+
+    <!-- Finished -->
+    <label class="flex items-center gap-1">
+      <input
+        type="checkbox"
+        id="finished"
+        name="finished"
+        value="finished"
+        class="w-5 h-5"
+      />
+      Finished
+    </label>
+
+    <!-- Released -->
+    <label class="flex items-center gap-1">
+      <input
+        type="checkbox"
+        id="released"
+        name="released"
+        value="released"
+        class="w-5 h-5"
+      />
+      Released
+    </label>
+  </div>
+  <div class="items-center flex justify-center pt-5">
+    <button class="bg-navbar py-2 px-4 rounded-md">Search</button>
+  </div>
+</div>

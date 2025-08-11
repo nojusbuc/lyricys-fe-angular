@@ -1,0 +1,13 @@
+@for (song of songs(); track song.id) {
+<div class="bg-navbar w-full h-1/8 my-3 rounded-md">
+  <div class="flex flex-col p-1"></div>
+  <a [routerLink]="[song.id]">
+    <p>{{ song.title }}</p>
+    <p class="text-sm opacity-75">{{ song.description }}</p>
+    <p class="text-sm opacity-60 text-right pr-3">
+      {{ song.lastEditedAt | datePipe }}
+    </p>
+  </a>
+</div>
+
+}
