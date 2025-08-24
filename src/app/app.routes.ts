@@ -13,7 +13,7 @@ export const routes: Routes = [
     component: SongsListPage,
   },
   {
-    path: 'songs/:id',
+    path: 'songs/:id/:versionId',
     component: SongPage,
   },
 ];

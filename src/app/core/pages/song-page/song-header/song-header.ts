@@ -1,6 +1,8 @@
-import { Component, signal } from '@angular/core';
+import { Component, model, signal } from '@angular/core';
 import { mockSongs } from '../../../../mockData/songs';
 import { DatePipePipe } from '../../../../shared/pipes/datePipe/date-pipe-pipe';
+import { Song } from '../../../types/interfaces/song';
+import { SongVersion } from '../../../types/interfaces/song-version';
 
 @Component({
   selector: 'app-song-header',
@@ -9,5 +11,6 @@ import { DatePipePipe } from '../../../../shared/pipes/datePipe/date-pipe-pipe';
   styleUrl: './song-header.scss',
 })
 export class SongHeader {
-  song = signal(mockSongs[0]);
+  song = model.required<Song>();
+  version = model.required<SongVersion>();
 }

@@ -4,22 +4,25 @@
   </div>
 
   <div class="w-9/10 m-auto mt-3 py-2 bg-blue-700 rounded-md px-3">
-    <p>{{ currentVersion().title }}</p>
-    <p class="text-sm text-white/50">{{ currentVersion().notes }}</p>
+    <p>{{ openedVersion().title }}</p>
+    <p class="text-sm text-white/50">{{ openedVersion().notes }}</p>
     <p class="text-sm text-white/50 text-right">
-      {{ currentVersion().lastEditedAt | datePipe }}
+      {{ openedVersion().lastEditedAt | datePipe }}
     </p>
   </div>
   <div class="w-9/10 m-auto mt-3 py-2 bg-blue-700 rounded-md px-3 text-center">
     <p class="font-bold text-lg">+</p>
   </div>
   @for (version of filteredVersions(); track version.id) {
-  <div class="w-9/10 m-auto mt-3 py-2 bg-navbar rounded-md px-3">
-    <p>{{ version.title }}</p>
-    <p class="text-sm text-white/50">{{ version.notes }}</p>
-    <p class="text-sm text-white/50 text-right">
-      {{ version.lastEditedAt | datePipe }}
-    </p>
-  </div>
+  <a [routerLink]="['/songs', song().id, version.id]">
+    <div class="w-9/10 m-auto mt-3 py-2 bg-navbar rounded-md px-3">
+      <p>{{ version.title }}</p>
+      <p class="text-sm text-white/50">{{ version.notes }}</p>
+      <p class="text-sm text-white/50 text-right">
+        {{ version.lastEditedAt | datePipe }}
+      </p>
+    </div>
+  </a>
+
   }
 </div>

@@ -1,7 +1,8 @@
-import { Component, signal } from '@angular/core';
+import { Component, model, signal } from '@angular/core';
 import { mockSongs } from '../../../../mockData/songs';
 import { RouterLink } from '@angular/router';
 import { DatePipePipe } from '../../../../shared/pipes/datePipe/date-pipe-pipe';
+import { Song } from '../../../types/interfaces/song';
 
 @Component({
   selector: 'app-song-list',
@@ -10,5 +11,5 @@ import { DatePipePipe } from '../../../../shared/pipes/datePipe/date-pipe-pipe';
   styleUrl: './song-list.scss',
 })
 export class SongList {
-  songs = signal(mockSongs);
+  songs = model.required<Song[]>();
 }

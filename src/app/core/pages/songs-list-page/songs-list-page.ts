@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, model, signal } from '@angular/core';
 import { mockSongs } from '../../../mockData/songs';
 import { RouterLink } from '@angular/router';
 import { SearchMenu } from './search-menu/search-menu';
@@ -11,5 +11,5 @@ import { SongList } from './song-list/song-list';
   styleUrl: './songs-list-page.scss',
 })
 export class SongsListPage {
-  songs = signal(mockSongs);
+  songs = model(mockSongs);
 }

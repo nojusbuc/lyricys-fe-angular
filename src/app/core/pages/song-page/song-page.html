@@ -1,11 +1,25 @@
+@if(song(); as s) {@if(version(); as ov) {
 <div class="h-full pb-6 pl-2">
   <div class="h-1/8">
-    <app-song-header />
+    <app-song-header [song]="s" [version]="ov" />
   </div>
   <div
     class="flex flex-row gap-5 border-t-1 border-l-1 border-white/50 h-7/8 pt-3 pl-3"
   >
-    <app-lyrics-editor class="h-full w-7/10 bg-nested" />
-    <app-version-list class="h-full w-3/10 bg-nested" />
+    <app-lyrics-editor
+      [song]="s"
+      [version]="ov"
+      class="h-full w-7/10 bg-nested"
+    />
+
+    @if (filteredVersions(); as fv) {
+    <app-version-list
+      [song]="s"
+      [openedVersion]="ov"
+      [filteredVersions]="fv"
+      class="h-full w-3/10 bg-nested"
+    />
+    }
   </div>
 </div>
+}}
