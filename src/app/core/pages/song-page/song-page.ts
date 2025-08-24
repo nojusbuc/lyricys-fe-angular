@@ -1,12 +1,11 @@
-import { Component, computed, inject, model, signal } from '@angular/core';
-import { SongHeader } from './song-header/song-header';
-import { LyricsEditor } from './lyrics-editor/lyrics-editor';
-import { VersionList } from './version-list/version-list';
-import { mockSongs } from '../../../mockData/songs';
-import { ActivatedRoute } from '@angular/router';
-import { Song } from '../../types/interfaces/song';
-import { SongVersion } from '../../types/interfaces/song-version';
+import { Component, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { ActivatedRoute } from '@angular/router';
+import { mockSongs } from '../../../mockData/songs';
+import { LyricsEditor } from './lyrics-editor/lyrics-editor';
+import { SongHeader } from './song-header/song-header';
+import { VersionList } from './version-list/version-list';
+import { LocalStorage } from '../../services/local-storage';
 
 @Component({
   selector: 'app-song-page',
@@ -16,15 +15,15 @@ import { toSignal } from '@angular/core/rxjs-interop';
 })
 export class SongPage {
   private route = inject(ActivatedRoute);
-
   private paramMap = toSignal(this.route.paramMap);
-
   private songId = computed(() => this.paramMap()?.get('id') ?? null);
   private versionId = computed(() => this.paramMap()?.get('versionId') ?? null);
 
+  storage = inject(LocalStorage);
+
   song = computed(() => {
     const id = this.songId();
-    return id ? mockSongs.find((s) => s.id === id) ?? null : null;
+    return id ? this.storage.getSongById(id) : null;
   });
 
   version = computed(() => {

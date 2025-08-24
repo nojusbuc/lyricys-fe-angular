@@ -1,8 +1,8 @@
-import { Component, model, signal } from '@angular/core';
-import { mockSongs } from '../../../mockData/songs';
+import { Component, inject, model, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SearchMenu } from './search-menu/search-menu';
 import { SongList } from './song-list/song-list';
+import { LocalStorage } from '../../services/local-storage';
 
 @Component({
   selector: 'app-songs-list-page',
@@ -11,5 +11,6 @@ import { SongList } from './song-list/song-list';
   styleUrl: './songs-list-page.scss',
 })
 export class SongsListPage {
-  songs = model(mockSongs);
+  storage = inject(LocalStorage);
+  songs = this.storage.getSongs();
 }

@@ -1,5 +1,4 @@
-import { Component, input, model, output } from '@angular/core';
-import { mockSongs } from '../../../../mockData/songs';
+import { Component, model } from '@angular/core';
 import { Song } from '../../../types/interfaces/song';
 import { SongVersion } from '../../../types/interfaces/song-version';
 
