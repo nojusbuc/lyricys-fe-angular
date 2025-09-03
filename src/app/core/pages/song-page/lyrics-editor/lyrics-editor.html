@@ -3,12 +3,15 @@
     <p class="font-semibold">Lyrics</p>
   </div>
   <div class="px-2 pt-2 h-14/15">
+    @if(version(); as v) {
     <textarea
       class="text-white/50 h-full w-full resize-none outline-none"
       name="lyrics"
       id="lyrics"
       placeholder="Start your song here..."
-      [value]="version().lyrics"
+      [value]="v.lyrics"
+      (input)="onLyricsChange(v.id, $event)"
     ></textarea>
+    }
   </div>
 </div>
