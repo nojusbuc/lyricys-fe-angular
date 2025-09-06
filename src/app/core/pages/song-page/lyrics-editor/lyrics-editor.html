@@ -10,7 +10,7 @@
       id="lyrics"
       placeholder="Start your song here..."
       [value]="v.lyrics"
-      (input)="onLyricsChange(v.id, $event)"
+      (blur)="onLyricsBlur(v.id, $event)"
     ></textarea>
     }
   </div>

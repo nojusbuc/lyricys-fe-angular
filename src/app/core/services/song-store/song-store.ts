@@ -1,5 +1,8 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { LocalStorage } from '../local-storage';
+import { Song } from '../../types/interfaces/song';
+import { SongVersion } from '../../types/interfaces/song-version';
+import { DatePipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
@@ -55,5 +58,44 @@ export class SongStore {
     this.ls.setSongs(next);
     if (this._selectedSongId() === songId)
       this._selectedVersionId.set(versionId);
+  }
+
+  updateSongTitle(songId: string, songTitle: string) {
+    const newSongs = this.songs().map((s) => {
+      if (s.id !== songId) return s;
+      return { ...s, title: songTitle };
+    });
+    this.ls.setSongs(newSongs);
+  }
+
+  updateSong(song: Song) {
+    const now = new Date() || DatePipe;
+
+    const newSongs = this.songs().map((s) => {
+      if (s.id !== song.id) return s;
+      return { ...song, lastEditedAt: now };
+    });
+    this.ls.setSongs(newSongs);
+  }
+
+  updateSongVersion(songId: string, version: SongVersion) {
+    const now = new Date() || DatePipe;
+
+    const newSongs = this.songs().map((s) => {
+      if (s.id !== songId) return s;
+      return {
+        ...s,
+        currentSongVersion: version,
+        lastEditedAt: now,
+        songVersions: s.songVersions.map((v) => {
+          if (v.id !== version.id) return v;
+          return {
+            ...version,
+            lastEditedAt: now,
+          };
+        }),
+      };
+    });
+    this.ls.setSongs(newSongs);
   }
 }

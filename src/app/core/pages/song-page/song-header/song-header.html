@@ -1,6 +1,13 @@
 <div class="flex flex-row w-full">
   <div class="w-12/33 h-full mt-auto">
-    <p class="text-lg font-semibold">{{ song().title }}</p>
+    <!-- <p class="text-lg font-semibold">{{ song().title }}</p> -->
+    <input
+      name=""
+      id=""
+      [value]="song().title"
+      (blur)="onSongTitleBlur($event)"
+      class="text-lg font-semibold m-0 p-0"
+    />
     <p class="text-sm opacity-60">
       {{ song().lastEditedAt | datePipe }}
     </p>
@@ -8,9 +15,11 @@
   <div
     class="w-2/10 color-navbar text-lg font-semibold inline-block align-bottom mt-auto mb-auto"
   >
-    <p class="">
-      {{ version().title }}
-    </p>
+    <input
+      type="text"
+      [value]="version().title"
+      (blur)="onVersionTitleBlur($event)"
+    />
   </div>
 
   <div class="flex flex-row gap-5 ml-auto mt-auto font-semibold">

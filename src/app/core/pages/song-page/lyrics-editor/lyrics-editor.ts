@@ -2,6 +2,9 @@ import { Component, effect, inject, model } from '@angular/core';
 import { Song } from '../../../types/interfaces/song';
 import { SongVersion } from '../../../types/interfaces/song-version';
 import { LocalStorage } from '../../../services/local-storage';
+import { DatePipe } from '@angular/common';
+import { SongService } from '../../../services/song-service';
+import { SongStore } from '../../../services/song-store/song-store';
 
 @Component({
   selector: 'app-lyrics-editor',
@@ -13,6 +16,7 @@ export class LyricsEditor {
   song = model.required<Song>();
   version = model.required<SongVersion>();
   localStorageService = inject(LocalStorage);
+  songStore = inject(SongStore);
 
   constructor() {
     effect(() => {
@@ -21,17 +25,17 @@ export class LyricsEditor {
     });
   }
 
-  onLyricsChange(versionId: string, event: Event) {
-    const value = (event.target as HTMLTextAreaElement).value;
-    this.song.update((prev) => {
-      if (!prev) return prev;
-      return {
-        ...prev,
-        songVersions: prev.songVersions.map((v) =>
-          v.id === versionId ? { ...v, lyrics: value } : v
-        ),
+  onLyricsBlur(versionId: string, event: Event) {
+    const now = new Date() || DatePipe;
+    const value = (event.target as HTMLTextAreaElement).value.trim();
+
+    if (this.version().lyrics !== value) {
+      const v: SongVersion = {
+        ...this.version(),
+        lastEditedAt: now,
+        lyrics: value,
       };
-    });
-    // console.log(this.song());
+      this.songStore.updateSongVersion(this.song().id, v);
+    }
   }
 }

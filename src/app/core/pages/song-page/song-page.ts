@@ -29,7 +29,6 @@ export class SongPage {
 
   constructor() {
     this.store.hydrate();
-
     effect(() => {
       const songId = this.paramMap()?.get('id');
       const versionId = this.paramMap()?.get('versionId');
